@@ -24,6 +24,7 @@ function BitItemLinkInput({
   async function handleSave() {
     if (!urlPattern.test(LinkInput)) {
       setMessage("Please enter a valid URL");
+      console.log("invalid");
       return;
     }
 
@@ -86,16 +87,17 @@ function BitItemLinkInput({
           onChange={(e) => setLinkInput(e.target.value)}
           ref={inputRef}
           // onBlur={handleCancel}
+          onKeyDown={(e) => e.key === "Enter" && handleSave()}
         />
         <div className="flex gap-2 items-center">
           <button
-            onClick={handleSave}
+            onMouseDown={handleSave}
             className="p-1 rounded-md hover:bg-green-100 text-green-600 transition"
           >
             <Check size={14} />
           </button>
           <button
-            onClick={handleCancel}
+            onMouseDown={handleCancel}
             className="p-1 rounded-md hover:bg-red-100 text-red-600"
           >
             <X size={14} />

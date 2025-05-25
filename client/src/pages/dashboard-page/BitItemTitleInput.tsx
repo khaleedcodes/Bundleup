@@ -56,6 +56,7 @@ function BitItemTitleInput({
         onChange={(e) => setTitleInput(e.target.value)}
         ref={inputRef}
         onBlur={handleCancel}
+        onKeyDown={(e) => e.key === "Enter" && handleSave()}
       />
       <div className="flex gap-2 items-center">
         <button
