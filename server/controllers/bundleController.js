@@ -79,6 +79,33 @@ async function getBitsInBundle(req, res) {
   }
 }
 
+async function updateBitInBundle(req, res) {
+  try {
+    const bundleId = req.user.bundles[0];
+    const { bitId } = req.params;
+    const updates = req.body;
+
+    if (!bundleId || !updates) {
+      return res.status(400).json({ error: "Missing bundleId or updates" });
+    }
+
+    const bundle = await Bundle.findById(bundleId);
+
+    if (!bundle) {
+      return res.status(404).json({ error: "Bundle not found" });
+    }
+
+    const foundBit = bundle.bits.id(bitId);
+    Object.assign(foundBit, { ...foundBit.toObject(), ...updates });
+    await bundle.save();
+
+    res.status(201).json({ message: "Bit updated" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to add link to bundle" });
+  }
+}
+
 async function deleteBitFromBundle(req, res) {
   try {
     const bundleId = req.user.bundles[0];
@@ -124,6 +151,7 @@ export {
   createBundle,
   addBitToBundle,
   getBitsInBundle,
+  updateBitInBundle,
   deleteBitFromBundle,
   getPublicBundle,
 };

@@ -1,13 +1,14 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import type { bitItemProps } from "../../types/types";
-import { Trash } from "lucide-react";
-// import { Eye, Pen } from "lucide-react";
+import { Trash, Pen } from "lucide-react";
+import BitItemTitleInput from "./BitItemTitleInput";
+import BitItemLinkInput from "./BitItemLinkInput";
 // import { UserCircle } from "lucide-react";
 
 function BitItem({ _id, title, url, getBits }: bitItemProps) {
-  // const [isTitleEdit, setIsTitleEdit] = useState(false);
-
+  const [isTitleEdit, setIsTitleEdit] = useState(false);
+  const [isLinkEdit, setIsLinkEdit] = useState(false);
   const { token } = useAuth();
 
   async function handleDelete(bitID: string) {
@@ -31,71 +32,114 @@ function BitItem({ _id, title, url, getBits }: bitItemProps) {
   return (
     <li
       key={_id}
-      className="flex justify-between items-center bg-[#1c1d23] p-6 rounded-2xl"
+      className="flex justify-between items-center bg-[#1c1d23] p-4 rounded-2xl"
     >
-      <div className="flex w-full gap-4 items-center">
-        {/* <UserCircle size={32} className="text-second-icon" /> */}
-        <div className="flex w-full flex-col gap-3">
+      <div className="flex w-full gap-4 items-center flex-col ">
+        <div className="flex w-full flex-col gap-2">
           <div className="gap-2 justify-between flex">
-            <div className="flex gap-2">
-              <div className="flex">
-                {/* {isTitleEdit ? (
-                  <input
-                    type="text"
-                    className="bg-transparent border"
-                    value={title}
+            <div className="flex gap-2 w-full">
+              <div className={`flex ${isTitleEdit && "w-full"}`}>
+                {isTitleEdit ? (
+                  <BitItemTitleInput
+                    title={title}
+                    _id={_id}
+                    setIsTitleEdit={setIsTitleEdit}
+                    getBits={getBits}
                   />
                 ) : (
-                  <p>{title}</p>
-                )} */}
-                <p className="sm:hidden">
-                  {title.length > 25 ? `${title.substring(0, 25)}...` : title}
-                </p>
-                <p className="hidden sm:inline">
-                  {title.length > 35 ? `${title.substring(0, 35)}...` : title}
-                </p>
+                  <div className="flex items-center">
+                    <p className="sm:hidden">
+                      {title.length > 25
+                        ? `${title.substring(0, 25)}...`
+                        : title}
+                    </p>
+                    <p className="hidden sm:inline">
+                      {title.length > 35
+                        ? `${title.substring(0, 35)}...`
+                        : title}
+                    </p>
+                  </div>
+                )}
               </div>
-              {/* <button
-                className="text-green-500"
-                onClick={() => {
-                  setIsTitleEdit((prev) => !prev);
-                }}
-              >
-                <Pen size={14} className="text-third-blue" />
-              </button> */}
+              {!isTitleEdit && (
+                <button
+                  onClick={() => {
+                    setIsTitleEdit(true);
+                  }}
+                >
+                  <Pen size={14} className="text-third-blue" strokeWidth={1} />
+                </button>
+              )}
             </div>
-            {/* <button className="" onClick={() => {}}>
-              <Eye size={20} className="text-yellow-500" />
-            </button> */}
           </div>
           <div className="flex gap-2 justify-between items-center">
-            <div className="flex gap-2">
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-grey hover:underline sm:hidden"
-              >
-                {url.length > 25 ? `${url.substring(0, 25)}...` : url}
-              </a>
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-grey hover:underline hidden sm:inline"
-              >
-                {url.length > 35 ? `${url.substring(0, 35)}...` : url}
-              </a>
-              {/* <button className="text-green-500" onClick={() => {}}>
-                <Pen size={14} className="text-third-blue" />
-              </button> */}
+            <div className="flex gap-2 w-full">
+              <div className={`flex ${isLinkEdit && "w-full"}`}>
+                {isLinkEdit ? (
+                  <BitItemLinkInput
+                    link={url}
+                    _id={_id}
+                    setIsLinkEdit={setIsLinkEdit}
+                    getBits={getBits}
+                  />
+                ) : (
+                  <div className="flex items-center">
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-grey hover:underline sm:hidden"
+                    >
+                      {url.length > 25 ? `${url.substring(0, 25)}...` : url}
+                    </a>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-grey hover:underline hidden sm:inline"
+                    >
+                      {url.length > 35 ? `${url.substring(0, 35)}...` : url}
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {!isLinkEdit && (
+                <button
+                  className="text-green-500"
+                  onClick={() => {
+                    setIsLinkEdit(true);
+                  }}
+                >
+                  <Pen size={14} className="text-third-blue" strokeWidth={1} />
+                </button>
+              )}
             </div>
+          </div>
+        </div>
+        <div className="flex justify-end w-full items-center">
+          {/* <div className="p-2  bg-first-card rounded-full">
+            <UserCircle size={18} className="text-second-icon" />
+          </div> */}
+
+          <div className="flex gap-10 bg-first-card p-2 rounded-2xl justify-between self-end  max-w-64">
+            {/* <button className="p-1 hover:bg-slate-800 rounded-md" onClick={() => {}}>
+              <Eye size={18} className="text-third-blue" strokeWidth={1} />
+            </button>
+            <button className="" onClick={() => {}}>
+              <div className="p-1 hover:bg-blue-500 rounded-md">
+                <Pin size={18} className="text-white" strokeWidth={1} />
+              </div>
+            </button> */}
+
             <button
               onClick={() => {
                 handleDelete(_id);
               }}
             >
-              <Trash size={20} className="text-red-500" />
+              <div className="p-1 hover:bg-red-500 rounded-md">
+                <Trash size={18} className="text-white " strokeWidth={1} />
+              </div>
             </button>
           </div>
         </div>
