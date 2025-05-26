@@ -50,15 +50,17 @@ import VaporwaveTheme from "./themes/VaporwaveTheme";
 import ViceCityTheme from "./themes/ViceCityTheme";
 import WatercolorTheme from "./themes/WatercolorTheme";
 import ZenTheme from "./themes/ZenTheme";
+import Loading from "../../components/Loading";
 
 const PublicBundlePage = () => {
   const { bundle, loading } = usePublicBundle();
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-white bg-gradient-to-b from-[#0f0f11] to-[#16161a]">
-        <div className="w-16 h-16 border-t-4 border-indigo-500 rounded-full animate-spin" />
-      </div>
+      // <div className="min-h-screen flex items-center justify-center text-white bg-gradient-to-b from-[#0f0f11] to-[#16161a]">
+      //   <div className="w-16 h-16 border-t-4 border-indigo-500 rounded-full animate-spin" />
+      // </div>
+      <Loading/>
     );
   }
 
