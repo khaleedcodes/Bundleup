@@ -140,6 +140,8 @@ async function getPublicBundle(req, res) {
       return res.status(404).json({ message: "Bundle not found" });
     }
 
+    bundle.bits = bundle.bits.filter((bit) => bit.isActive);
+
     res.json(bundle);
   } catch (error) {
     console.error("Error fetching public bundle:", error);
