@@ -9,6 +9,7 @@ interface Bit {
   url: string;
   isPinned: boolean;
   order: number;
+  isActive: boolean;
 }
 
 const BitManager = () => {
@@ -21,12 +22,15 @@ const BitManager = () => {
   const [newBit, setNewBit] = useState({ title: "", url: "" });
 
   async function getBits() {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/bundles/me/bits`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/bundles/me/bits`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const data = await res.json();
     setBits(data.bits);
   }
@@ -46,14 +50,17 @@ const BitManager = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/bundles/me/bits`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(newBit),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/bundles/me/bits`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(newBit),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         setNewBit({ title: "", url: "" });
@@ -124,13 +131,14 @@ const BitManager = () => {
       <div>
         {bits && (
           <ul className="flex flex-col gap-4">
-            {bits.map(({ _id, title, url }) => (
+            {bits.map(({ _id, title, url, isActive }) => (
               <BitItem
                 _id={_id}
                 title={title}
                 url={url}
                 getBits={getBits}
                 key={_id}
+                isActive={isActive}
               />
             ))}
           </ul>

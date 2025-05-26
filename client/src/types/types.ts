@@ -70,6 +70,7 @@ interface bitType {
   _id: string;
   title: string;
   url: string;
+  isActive : boolean;
 }
 interface bitItemProps extends bitType {
   getBits: () => void;
