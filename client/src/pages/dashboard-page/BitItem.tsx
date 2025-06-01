@@ -5,6 +5,7 @@ import { Trash, Pen } from "lucide-react";
 import BitItemTitleInput from "./BitItemTitleInput";
 import BitItemLinkInput from "./BitItemLinkInput";
 import BitItemEye from "./BitItemEye";
+// import BitItemPin from "./BitItemPin";
 // import { UserCircle } from "lucide-react";
 
 function BitItem({ _id, title, url, isActive, getBits }: bitItemProps) {
@@ -124,13 +125,8 @@ function BitItem({ _id, title, url, isActive, getBits }: bitItemProps) {
           </div> */}
 
           <div className="flex gap-10 bg-first-card p-2 rounded-2xl justify-between self-end  max-w-64">
+            {/* <BitItemPin /> */}
             <BitItemEye isActive={isActive} _id={_id} getBits={getBits} />
-            {/* <button className="" onClick={() => {}}>
-              <div className="p-1 hover:bg-blue-500 rounded-md">
-                <Pin size={18} className="text-white" strokeWidth={1} />
-              </div>
-            </button> */}
-
             <button
               onClick={() => {
                 handleDelete(_id);
