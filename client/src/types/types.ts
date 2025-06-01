@@ -41,9 +41,10 @@ type UserCardType = {
   bundleLink: string;
   bundleName: string;
 };
-type TabType = "Dashboard" | "My Bundle";
+type TabType = "Account" | "bundle";
 type SideBarProps = {
   switchTab: (tabName: TabType) => void;
+  currentTab: TabType;
 };
 type SideBarLinkListProps = SideBarProps;
 type SideBarLinkType = {
@@ -70,7 +71,7 @@ interface bitType {
   _id: string;
   title: string;
   url: string;
-  isActive : boolean;
+  isActive: boolean;
 }
 interface bitItemProps extends bitType {
   getBits: () => void;

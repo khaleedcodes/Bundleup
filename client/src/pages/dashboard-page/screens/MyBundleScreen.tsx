@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import BitManager from "../BitManager";
 import { Copy } from "lucide-react";
-// import ProfileForm from "../ProfileForm";
 
 function MyBundleScreen() {
   const { user } = useAuth();
@@ -35,7 +34,6 @@ function MyBundleScreen() {
             {copied ? <div>Link copied!</div> : <div>Copy Your Bundle URL</div>}
           </button>
         </div>
-        {/* <ProfileForm /> */}
         <BitManager />
       </div>
     </div>
