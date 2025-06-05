@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react"; // <-- Import from lucide
 import { createAvatar } from "@dicebear/core";
 import {
