@@ -5,7 +5,7 @@ import TopBar from "./TopBar";
 import RenderScreen from "./screens/RenderScreen";
 
 function DashboardPage() {
-  const [tab, setTab] = useState<TabType>("bundle");
+  const [tab, setTab] = useState<TabType>("Account");
   function switchTab(tabName: TabType) {
     setTab(tabName);
   }

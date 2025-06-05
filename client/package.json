@@ -10,9 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dicebear/collection": "^9.2.2",
+    "@dicebear/core": "^9.2.2",
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
     "@react-oauth/google": "^0.12.1",
     "@tailwindcss/typography": "^0.5.16",
     "axios": "^1.6.8",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.10.5",
     "lucide-react": "^0.507.0",
     "react": "^18.2.0",
@@ -21,9 +29,12 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.22.3",
     "react-spinners": "^0.17.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7",
+    "tw-animate-css": "^1.3.4"
   },
   "devDependencies": {
+    "@types/node": "^22.15.29",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",

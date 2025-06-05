@@ -3,7 +3,7 @@ import { SideBarLinkListProps } from "../../types/types";
 import SideBarLink from "./SideBarLink";
 const sideBarLinks: SideBarLinkType[] = [
   { tabName: "bundle" },
-  // { tabName: "Account" },
+  { tabName: "Account" },
 ];
 import { useAuth } from "../../context/AuthContext";
 

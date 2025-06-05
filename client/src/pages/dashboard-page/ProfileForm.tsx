@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { UserCircle } from "lucide-react";
+// import { UserCircle } from "lucide-react";
+import AvatarFromSeed from "./AvatarFromSeed";
 // import { useAuth } from "../../context/AuthContext";
 
 const ProfileForm = () => {
@@ -18,7 +19,7 @@ const ProfileForm = () => {
       className="gap-4 flex-col flex bg-first-card p-6 rounded-2xl w-full"
     >
       <div className="flex items-center gap-4">
-        <UserCircle size={32} className="text-second-icon" />
+        <AvatarFromSeed seed="6kdb7gpp5jg" styleName="Avataars Neutral" />
         <div className="grow">
           <input
             type="text"
