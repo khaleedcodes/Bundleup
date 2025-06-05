@@ -33,10 +33,10 @@ const styles: { name: string; style: AvatarStyle }[] = [
   { name: "Big Smile", style: bigSmile },
   { name: "Big Ears", style: bigEars },
   { name: "Micah", style: micah },
-  { name: "Pixel Art", style: pixelArt },
-  { name: "Bottts", style: bottts },
   { name: "Adventurer Neutral", style: adventurerNeutral },
   { name: "Avataars Neutral", style: avataaarsNeutral },
+  { name: "Pixel Art", style: pixelArt },
+  { name: "Bottts", style: bottts },
 ];
 
 // Helper: Convert SVG string to PNG data URL
@@ -133,8 +133,16 @@ function AvatarSelectionPage() {
 
   return (
     <div className="min-h-screen bg-first-card flex flex-col items-center p-6 rounded-2xl gap-6">
-      <h1 className="text-3xl font-bold text-white">Choose Your Bitface</h1>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-4">
+      <h1 className="text-3xl font-bold text-white">Choose Your Avatar</h1>
+
+      <button
+        onClick={generateAvatars}
+        className="px-6 py-2 bg-third-blue hover:bg-second-blue text-white font-bold rounded-md transition-all duration-150"
+      >
+        Generate Avatars
+      </button>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {avatars.map(({ dataUri, seed, styleName }) => (
           <div
             key={`${styleName}-${seed}`}
@@ -157,27 +165,38 @@ function AvatarSelectionPage() {
           </div>
         ))}
       </div>
-      {/* Bottom Buttons */}
-      <div className="mt-10 flex flex-col sm:flex-row gap-4">
-        <button
-          onClick={generateAvatars}
-          className="px-6 py-2 bg-third-blue hover:bg-second-blue text-white font-bold rounded-md transition-all duration-150"
-        >
-          🎲 Shuffle Avatars
-        </button>
 
-        <button
-          onClick={handleDownload}
-          disabled={!selectedAvatar}
-          className={`px-6 py-2 font-bold rounded-md transition-all duration-150 ${
-            selectedAvatar
-              ? "bg-green-600 hover:bg-green-700 text-white"
-              : "bg-gray-600 text-gray-300 cursor-not-allowed"
-          }`}
-        >
-          ✅ Use This Avatar
-        </button>
-      </div>
+      {selectedAvatar && (
+        <div className="mt-8 text-center">
+          <h2 className="text-xl font-semibold text-white mb-2">
+            Selected Avatar
+          </h2>
+          {/* Show PNG preview */}
+          {pngDataUrl ? (
+            <img
+              src={pngDataUrl}
+              alt={`Selected Avatar PNG: ${selectedAvatar.styleName}`}
+              className="w-32 h-32 mx-auto"
+            />
+          ) : (
+            <p className="text-white">Loading PNG...</p>
+          )}
+          <p className="text-white mt-4">
+            <strong>Seed:</strong> {selectedAvatar.seed}
+          </p>
+          <p className="text-white">
+            <strong>Style:</strong> {selectedAvatar.styleName}
+          </p>
+
+          <button
+            onClick={handleDownload}
+            className="mt-4 px-4 py-2 bg-third-blue hover:bg-second-blue text-white font-bold rounded-md transition-all duration-150"
+            disabled={!pngDataUrl}
+          >
+            Download PNG
+          </button>
+        </div>
+      )}
     </div>
   );
 }
