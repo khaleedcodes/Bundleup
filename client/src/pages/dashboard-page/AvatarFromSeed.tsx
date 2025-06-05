@@ -33,12 +33,14 @@ interface AvatarFromSeedProps {
   seed: string;
   styleName: string;
   size?: number; // optional size in px
+  onClick?: () => void; // new optional click handler
 }
 
 const AvatarFromSeed: React.FC<AvatarFromSeedProps> = ({
   seed,
   styleName,
   size = 80,
+  onClick,
 }) => {
   const style = stylesMap[styleName];
 
@@ -56,7 +58,8 @@ const AvatarFromSeed: React.FC<AvatarFromSeedProps> = ({
       alt={`Avatar: ${styleName}`}
       width={size}
       height={size}
-      style={{ borderRadius: "50%" }}
+      style={{ borderRadius: "50%", cursor: onClick ? "pointer" : undefined }}
+      onClick={onClick}
     />
   );
 };
