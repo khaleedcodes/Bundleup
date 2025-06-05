@@ -20,7 +20,7 @@ type AvatarStyle =
   | typeof pixelArt;
 
 type AvatarData = {
-  svg: string;
+  dataUri: string;
   seed: string;
   styleName: string;
 };
@@ -48,7 +48,7 @@ const AvatarSelectionPage: React.FC = () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const avatar = createAvatar(style as any, { seed });
         generated.push({
-          svg: avatar.toString(),
+          dataUri: avatar.toDataUri(),
           seed,
           styleName: name,
         });
@@ -74,19 +74,20 @@ const AvatarSelectionPage: React.FC = () => {
       </button>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-        {avatars.map(({ svg, seed, styleName }, idx) => (
+        {avatars.map(({ dataUri, seed, styleName }) => (
           <div
-            key={idx}
+            key={`${styleName}-${seed}`}
             className={`p-2 rounded-2xl cursor-pointer transition-all duration-150 ${
-              selectedAvatar?.svg === svg
+              selectedAvatar?.dataUri === dataUri
                 ? "border-2 border-third-blue bg-[#1c1d23]"
                 : "bg-[#1c1d23] border-2 border-transparent hover:border-[#333]"
             }`}
-            onClick={() => setSelectedAvatar({ svg, seed, styleName })}
+            onClick={() => setSelectedAvatar({ dataUri, seed, styleName })}
           >
-            <div
+            <img
+              src={dataUri}
+              alt={`Avatar: ${styleName}`}
               className="w-28 h-28"
-              dangerouslySetInnerHTML={{ __html: svg }}
             />
           </div>
         ))}
@@ -97,9 +98,10 @@ const AvatarSelectionPage: React.FC = () => {
           <h2 className="text-xl font-semibold text-white mb-2">
             Selected Avatar
           </h2>
-          <div
+          <img
+            src={selectedAvatar.dataUri}
+            alt={`Selected Avatar: ${selectedAvatar.styleName}`}
             className="w-32 h-32 mx-auto"
-            dangerouslySetInnerHTML={{ __html: selectedAvatar.svg }}
           />
           <p className="text-white mt-4">
             <strong>Seed:</strong> {selectedAvatar.seed}

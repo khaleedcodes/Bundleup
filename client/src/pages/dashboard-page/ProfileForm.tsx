@@ -19,7 +19,7 @@ const ProfileForm = () => {
       className="gap-4 flex-col flex bg-first-card p-6 rounded-2xl w-full"
     >
       <div className="flex items-center gap-4">
-        <AvatarFromSeed seed="6kdb7gpp5jg" styleName="Avataars Neutral" />
+        <AvatarFromSeed seed="5f20vdsx78j" styleName="Big Ears" />
         <div className="grow">
           <input
             type="text"

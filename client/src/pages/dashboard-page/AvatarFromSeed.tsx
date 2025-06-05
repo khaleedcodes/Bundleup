@@ -46,13 +46,17 @@ const AvatarFromSeed: React.FC<AvatarFromSeedProps> = ({
     return <div>Invalid style name: {styleName}</div>;
   }
 
+  // Generate the avatar as a Data URI
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const avatar = createAvatar(style as any, { seed, size });
+  const avatarDataUri = createAvatar(style as any, { seed }).toDataUri();
 
   return (
-    <div
-      style={{ width: size, height: size }}
-      dangerouslySetInnerHTML={{ __html: avatar.toString() }}
+    <img
+      src={avatarDataUri}
+      alt={`Avatar: ${styleName}`}
+      width={size}
+      height={size}
+      style={{ borderRadius: "50%" }}
     />
   );
 };
