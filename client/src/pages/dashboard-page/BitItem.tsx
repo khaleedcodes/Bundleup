@@ -4,9 +4,11 @@ import type { bitItemProps } from "../../types/types";
 import { Trash, Pen } from "lucide-react";
 import BitItemTitleInput from "./BitItemTitleInput";
 import BitItemLinkInput from "./BitItemLinkInput";
+import BitItemEye from "./BitItemEye";
+// import BitItemPin from "./BitItemPin";
 // import { UserCircle } from "lucide-react";
 
-function BitItem({ _id, title, url, getBits }: bitItemProps) {
+function BitItem({ _id, title, url, isActive, getBits }: bitItemProps) {
   const [isTitleEdit, setIsTitleEdit] = useState(false);
   const [isLinkEdit, setIsLinkEdit] = useState(false);
   const { token } = useAuth();
@@ -117,21 +119,14 @@ function BitItem({ _id, title, url, getBits }: bitItemProps) {
             </div>
           </div>
         </div>
-        <div className="flex justify-end w-full items-center">
+        <div className="flex w-full items-center justify-end">
           {/* <div className="p-2  bg-first-card rounded-full">
             <UserCircle size={18} className="text-second-icon" />
           </div> */}
 
           <div className="flex gap-10 bg-first-card p-2 rounded-2xl justify-between self-end  max-w-64">
-            {/* <button className="p-1 hover:bg-slate-800 rounded-md" onClick={() => {}}>
-              <Eye size={18} className="text-third-blue" strokeWidth={1} />
-            </button>
-            <button className="" onClick={() => {}}>
-              <div className="p-1 hover:bg-blue-500 rounded-md">
-                <Pin size={18} className="text-white" strokeWidth={1} />
-              </div>
-            </button> */}
-
+            {/* <BitItemPin /> */}
+            <BitItemEye isActive={isActive} _id={_id} getBits={getBits} />
             <button
               onClick={() => {
                 handleDelete(_id);

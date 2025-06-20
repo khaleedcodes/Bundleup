@@ -9,7 +9,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 w-full">
       <span className="text-sm font-semibold text-second-text-color">
         Dark Mode
       </span>

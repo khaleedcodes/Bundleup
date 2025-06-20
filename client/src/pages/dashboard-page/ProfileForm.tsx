@@ -15,7 +15,7 @@ const ProfileForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="gap-4 flex-col flex bg-first-card p-6 rounded-2xl"
+      className="gap-4 flex-col flex bg-first-card p-6 rounded-2xl w-full"
     >
       <div className="flex items-center gap-4">
         <UserCircle size={32} className="text-second-icon" />

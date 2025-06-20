@@ -9,7 +9,7 @@ const AccountSettings = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full">
       <h3 className="text-lg font-semibold text-second-text-color">
         Account Settings
       </h3>

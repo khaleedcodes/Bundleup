@@ -5,7 +5,7 @@ const bitSchema = new mongoose.Schema({
   url: { type: String, required: true, trim: true },
   icon: { type: String, trim: true },
   isPinned: { type: Boolean, default: false },
-  // isActive: { type: Boolean, default: true },
+  isActive: { type: Boolean, default: true },
   order: { type: Number, default: 0 },
 });
 
