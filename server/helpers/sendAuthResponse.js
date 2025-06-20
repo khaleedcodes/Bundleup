@@ -16,6 +16,7 @@ const sendAuthResponse = (res, user, isRegister = true) => {
       emailVerified: user.emailVerified || false,
       profilePicture: user.profilePicture || "",
       bundles: user.bundles || [],
+      bitface : user.bitface || {}
     },
   });
 };

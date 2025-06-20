@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
-import BitManager from "../BitManager";
+import { useAuth } from "../../../../context/AuthContext";
+import BitManager from "./BitManager";
 import { Copy } from "lucide-react";
 
 function MyBundleScreen() {

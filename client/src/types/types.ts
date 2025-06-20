@@ -53,6 +53,7 @@ type SideBarLinkType = {
 type SideBarLinkProps = SideBarProps & SideBarLinkType;
 interface userType {
   id: string;
+  bitface: { avatarSeed: string; avatarStyle: string };
   email: string;
   username: string;
   emailVerified: boolean;

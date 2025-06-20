@@ -1,7 +1,7 @@
 import { useState, useEffect, Dispatch, useRef } from "react";
 import { Check } from "lucide-react";
 import { X } from "lucide-react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../../../context/AuthContext";
 
 function BitItemLinkInput({
   link,

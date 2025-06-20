@@ -1,5 +1,30 @@
 import mongoose from "mongoose";
 
+const bitfaceSchema = new mongoose.Schema({
+  avatarSeed: {
+    type: String,
+    required: true,
+    trim: true,
+    default: "jgagbu9m3o",
+  },
+  avatarStyle: {
+    type: String,
+    required: true,
+    trim: true,
+    default: "Adventurer Neutral",
+    enum: [
+      "Adventurer",
+      "Big Smile",
+      "Big Ears",
+      "Micah",
+      "Pixel Art",
+      "Bottts",
+      "Adventurer Neutral",
+      "Avataars Neutral",
+    ],
+  },
+});
+
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -65,6 +90,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
     },
+    bitface: bitfaceSchema,
   },
   { timestamps: true }
 );

@@ -1,5 +1,5 @@
 import AccountScreen from "./AccountScreen";
-import MyBundleScreen from "./MyBundleScreen";
+import MyBundleScreen from "./bundle-screen/MyBundleScreen";
 
 function RenderScreen({ tab }: { tab: string }) {
   switch (tab) {

@@ -11,6 +11,7 @@ import {
   pixelArt,
   bottts,
 } from "@dicebear/collection";
+import { useAuth } from "@/context/AuthContext";
 
 type AvatarStyle =
   | typeof adventurer
@@ -80,6 +81,8 @@ interface AvatarSelectionPageProps {
 }
 
 function AvatarSelectionPage({ onClose }: AvatarSelectionPageProps) {
+  const { token } = useAuth();
+
   const [selectedAvatar, setSelectedAvatar] = useState<AvatarData | null>(null);
   const [avatars, setAvatars] = useState<AvatarData[]>([]);
   const [pngDataUrl, setPngDataUrl] = useState<string | null>(null);
@@ -122,12 +125,39 @@ function AvatarSelectionPage({ onClose }: AvatarSelectionPageProps) {
       .catch(() => setPngDataUrl(null));
   }, [selectedAvatar]);
 
-  const handleUseAvatar = () => {
+  const handleUseAvatar = async () => {
     if (!selectedAvatar) return;
 
-    // Dummy backend call - replace this later
-    console.log("Saving avatar:", selectedAvatar, pngDataUrl);
-    onClose();
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users/me`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            // Include authorization header if you use JWT or similar auth
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            bitface: {
+              avatarSeed: selectedAvatar.seed,
+              avatarStyle: selectedAvatar.styleName,
+            },
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update avatar");
+      }
+
+      const data = await response.json();
+      console.log("Avatar updated:", data);
+      onClose();
+    } catch (error) {
+      console.error("Error updating avatar:", error);
+      // Optionally show a user notification about the failure
+    }
   };
 
   return (

@@ -1,7 +1,7 @@
 // import AccountSettings from "../AccountSettings";
 // import Analytics from "../Analytics";
 // import AvatarSelectionPage from "../AvatarSelectionPage";
-import ProfileForm from "../ProfileForm";
+import ProfileForm from "./account-screen/ProfileForm";
 // import ThemeToggle from "../ThemeToggle";
 function AccountScreen() {
   return (

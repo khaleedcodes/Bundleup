@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import type { bitItemProps } from "../../types/types";
+import { useAuth } from "../../../../context/AuthContext";
+import type { bitItemProps } from "../../../../types/types";
 import { Trash, Pen } from "lucide-react";
 import BitItemTitleInput from "./BitItemTitleInput";
 import BitItemLinkInput from "./BitItemLinkInput";

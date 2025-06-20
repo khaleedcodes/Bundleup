@@ -1,5 +1,5 @@
 import { Eye, EyeOff } from "lucide-react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../../../context/AuthContext";
 
 interface BitItemEyeProp {
   isActive: boolean;

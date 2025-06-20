@@ -39,7 +39,7 @@ interface AvatarFromSeedProps {
 const AvatarFromSeed: React.FC<AvatarFromSeedProps> = ({
   seed,
   styleName,
-  size = 80,
+  size = 50,
   onClick,
 }) => {
   const style = stylesMap[styleName];

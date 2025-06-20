@@ -7,6 +7,7 @@ import authRoutes from "./routes/authRoutes.js";
 import bundleRoutes from "./routes/bundleRoutes.js";
 import selfPingRoutes from "./routes/selfPingRoutes.js";
 import job from "./utils/cron.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 console.log("API URL:", process.env.API_URL);
@@ -20,6 +21,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/bundles", bundleRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/", selfPingRoutes);
 
 const PORT = process.env.PORT || 5001;
